@@ -9,11 +9,12 @@
 Hit Plane::Intersection(const Ray& ray, int part) const
 {
     //TODO;
-    double denominator = dot(normal, ray.direction);
-    if (denominator > small_t) {
+    //den = denominator
+    double den = dot(normal, ray.direction);
+    if (den != 0) {
     	vec3 distance = x1 - ray.endpoint;
-    	double t = dot(distance, normal) / denominator;
-    	if (t >= small_t) {
+    	double t = dot(distance, normal) / den;
+    	if (t > small_t) {
     		return {this, t, part};
     	}
     }

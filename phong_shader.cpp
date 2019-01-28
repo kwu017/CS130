@@ -8,7 +8,11 @@ vec3 Phong_Shader::
 Shade_Surface(const Ray& ray,const vec3& intersection_point,
     const vec3& normal,int recursion_depth) const
 {
+	//TODO;
     vec3 color;
-    TODO; //determine the color
+    vec3 ambient = color_ambient * world.ambient_color * world.ambient_intensity;
+
+    color = ambient;
+    
     return color;
 }

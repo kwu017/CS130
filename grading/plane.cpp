@@ -9,6 +9,7 @@
 Hit Plane::Intersection(const Ray& ray, int part) const
 {
     //TODO;
+    //den = denominator
     double den = dot(normal, ray.direction);
     if (den != 0) {
     	vec3 distance = x1 - ray.endpoint;

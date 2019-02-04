@@ -5,9 +5,11 @@
 Hit Sphere::Intersection(const Ray& ray, int part) const
 {
     //TODO;
+
     double a = dot(ray.direction,ray.direction);
-    double b = 2 * dot(ray.direction, ray.endpoint - center);
-    double c = dot(ray.endpoint - center, ray.endpoint - center) - (radius * radius);
+    double b = 2 * dot(ray.direction, ray.endpoint - this->center);
+    double c = dot(ray.endpoint - this->center, ray.endpoint - this->center) - (this->radius * this->radius);
+
     double discriminant = (b * b) - (4 * a * c);
     double t = 0;
     double t1 = 0;
@@ -18,16 +20,16 @@ Hit Sphere::Intersection(const Ray& ray, int part) const
     }
 
     else if (discriminant > 0) {
-    	t1 = ((-1 * b) + (b * b - 4 * a * c)) / (2 * a);
-    	t2 = ((-1 * b) - (b * b - 4 * a * c)) / (2 * a);
-    	t = (t1 >= t2) ? t1 : t2;
+    	t1 = ((-1 * b) + sqrt(discriminant)) / (2 * a);
+    	t2 = ((-1 * b) - sqrt(discriminant)) / (2 * a);
+    	t = (t1 < t2) ? t1 : t2;
     }
 
     if (t >= small_t) {
     	return {this, t, part};
     }
 
-    return {0,0,0};
+    return {NULL,0,part};
 }
 
 vec3 Sphere::Normal(const vec3& point, int part) const
